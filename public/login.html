@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>GUcart - Authentication</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: { "brand-orange": "#FF6F00", "brand-blue": "#005A9C" }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-gray-50 text-gray-900">
+<div class="flex min-h-screen">
+    <div class="hidden md:flex w-1/2 bg-brand-blue items-center justify-center text-white p-10 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="relative z-10 text-center">
+            <h2 class="text-4xl font-bold mb-4">GUcart</h2>
+            <p class="text-lg text-white/90">Your one-stop shop for everything.</p>
+        </div>
+    </div>
+
+    <div class="w-full md:w-1/2 flex items-center justify-center p-8 bg-white">
+        <div class="w-full max-w-md space-y-8">
+            <h1 class="text-3xl font-bold text-center" id="page-title">Welcome Back</h1>
+            
+            <div class="flex justify-center bg-gray-100 p-1 rounded-xl">
+                <label class="cursor-pointer w-1/2 text-center py-2 rounded-lg transition-all" id="lbl-signin">
+                    <input type="radio" name="auth-toggle" value="login" class="hidden" checked onclick="toggleAuth('login')">
+                    <span class="font-medium">Sign In</span>
+                </label>
+                <label class="cursor-pointer w-1/2 text-center py-2 rounded-lg transition-all" id="lbl-signup">
+                    <input type="radio" name="auth-toggle" value="signup" class="hidden" onclick="toggleAuth('signup')">
+                    <span class="font-medium">Sign Up</span>
+                </label>
+            </div>
+
+            <form id="authForm" action="/login" method="POST" class="mt-8 space-y-6">
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input name="email" type="email" required class="w-full rounded-lg border-gray-300 focus:ring-brand-orange focus:border-brand-orange h-12 px-4">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Password</label>
+                        <input name="password" type="password" required class="w-full rounded-lg border-gray-300 focus:ring-brand-orange focus:border-brand-orange h-12 px-4">
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-brand-orange text-white py-3 rounded-lg font-bold hover:bg-orange-600 transition">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleAuth(mode) {
+        const form = document.getElementById('authForm');
+        const btn = document.getElementById('submitBtn');
+        const title = document.getElementById('page-title');
+        const lblSignIn = document.getElementById('lbl-signin');
+        const lblSignUp = document.getElementById('lbl-signup');
+
+        if (mode === 'signup') {
+            form.action = '/signup'; // Change backend route
+            btn.innerText = 'Create Account';
+            title.innerText = 'Create Account';
+            lblSignUp.classList.add('bg-white', 'shadow-md', 'text-black');
+            lblSignIn.classList.remove('bg-white', 'shadow-md');
+        } else {
+            form.action = '/login'; // Change backend route
+            btn.innerText = 'Sign In';
+            title.innerText = 'Welcome Back';
+            lblSignIn.classList.add('bg-white', 'shadow-md', 'text-black');
+            lblSignUp.classList.remove('bg-white', 'shadow-md');
+        }
+    }
+    // Initialize
+    toggleAuth('login');
+</script>
+</body>
+</html>

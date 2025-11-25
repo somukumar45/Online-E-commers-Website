@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GUcart - Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#3A86FF",
+                    "accent": "#FFBE0B",
+                    "background-light": "#F8F9FA",
+                    "background-dark": "#121212",
+                    "text-light": "#212529",
+                    "text-dark": "#E0E0E0",
+                    "subtext-light": "#6c757d",
+                    "subtext-dark": "#adb5bd",
+                    "border-light": "#dee2e6",
+                    "border-dark": "#495057",
+                    "card-light": "#FFFFFF",
+                    "card-dark": "#1E1E1E",
+                },
+                fontFamily: { "display": ["Inter", "sans-serif"] },
+                borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px" },
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24 }
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col">
+    
+<header class="bg-white dark:bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50 w-full shadow-[0_4px_12px_rgba(13,242,242,0.1)]">
+    <div class="container mx-auto px-6">
+        <div class="flex h-20 items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a aria-label="GUcart Homepage" class="flex items-center gap-3" href="/">
+                    <img class="h-16 w-auto" src="logo.png"/>
+                    <h2 class="text-2xl font-bold tracking-tighter text-slate-800 dark:text-white">GUcart</h2>
+                </a>
+            </div>
+            <div class="flex flex-1 justify-end items-center gap-3">
+                <a href="/cart" class="text-primary font-bold hover:underline">Return to Cart</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container mx-auto flex-1 px-4 py-8 lg:px-8 lg:py-12">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
+        
+        <div class="lg:col-span-2">
+            <h1 class="mb-6 text-4xl font-black tracking-tighter">Checkout</h1>
+            
+            <div class="rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+                <div class="flex items-center gap-4">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">
+                        <span class="material-symbols-outlined">local_shipping</span>
+                    </div>
+                    <h2 class="text-xl font-bold">Shipping Address</h2>
+                </div>
+                <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div class="sm:col-span-2">
+                        <label class="mb-1 block text-sm font-medium text-subtext-light dark:text-subtext-dark">Full Name</label>
+                        <input id="full-name" class="w-full rounded-md border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary p-3" placeholder="John Doe" type="text"/>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="mb-1 block text-sm font-medium text-subtext-light dark:text-subtext-dark">Street Address</label>
+                        <input id="street-address" class="w-full rounded-md border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary p-3" placeholder="123 Shopping Lane" type="text"/>
+                    </div>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-subtext-light dark:text-subtext-dark">City</label>
+                        <input id="city" class="w-full rounded-md border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary p-3" placeholder="New York" type="text"/>
+                    </div>
+                    <div>
+                        <label class="mb-1 block text-sm font-medium text-subtext-light dark:text-subtext-dark">Pincode</label>
+                        <input id="pincode" class="w-full rounded-md border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary p-3" placeholder="10001" type="text"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+                <div class="flex items-center gap-4">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">
+                        <span class="material-symbols-outlined">payment</span>
+                    </div>
+                    <h2 class="text-xl font-bold">Payment Method</h2>
+                </div>
+                <div class="mt-6 space-y-4">
+                    <div class="rounded-md border-2 border-primary bg-primary/5 p-4">
+                        <label class="flex cursor-pointer items-center">
+                            <input checked="" class="h-4 w-4 border-gray-300 text-primary focus:ring-primary" name="payment-method" type="radio"/>
+                            <span class="ml-3 text-sm font-semibold">Credit/Debit Card</span>
+                        </label>
+                        <div class="mt-4 ml-7 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div class="sm:col-span-2">
+                                <input class="w-full rounded-md border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-2" placeholder="Card Number"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-md border border-border-light dark:border-border-dark p-4">
+                        <label class="flex cursor-pointer items-center">
+                            <input class="h-4 w-4 border-gray-300 text-primary focus:ring-primary" name="payment-method" type="radio"/>
+                            <span class="ml-3 text-sm font-medium">Cash on Delivery</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-1">
+            <div class="sticky top-28 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+                <h2 class="text-xl font-bold">Review Your Order</h2>
+                
+                <div id="order-items" class="mt-6 space-y-4 max-h-60 overflow-y-auto">
+                    <p class="text-sm text-gray-500">Loading items...</p>
+                </div>
+
+                <div class="mt-6 border-t border-border-light dark:border-border-dark pt-6">
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <p class="text-subtext-light dark:text-subtext-dark">Subtotal</p>
+                            <p id="subtotal-amount" class="font-medium">₹0.00</p>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <p class="text-subtext-light dark:text-subtext-dark">Shipping</p>
+                            <p class="font-medium text-green-600">Free</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 border-t border-border-light dark:border-border-dark pt-4">
+                        <div class="flex justify-between font-bold text-lg">
+                            <p>Total Amount</p>
+                            <p id="total-amount">₹0.00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="placeOrder()" class="mt-8 flex w-full items-center justify-center gap-2 rounded-lg bg-accent py-3 text-base font-bold text-black shadow-md hover:scale-[1.02] transition-transform">
+                    Place Order & Pay
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-slate-900 dark:bg-[#0A1818] text-white">
+    <div class="container mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+            <div class="lg:col-span-2 pr-8">
+                <a aria-label="GUcart Homepage" class="flex items-center gap-3" href="#">
+                    <img class="h-16 w-auto brightness-0 invert" src="logo.png"/>
+                    <h2 class="text-2xl font-bold tracking-tighter text-white">GUcart</h2>
+                </a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="font-bold text-base text-white">Get to Know Us</h3>
+                <div class="flex flex-col gap-2.5">
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">About Us</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Careers</a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="font-bold text-base text-white">Let Us Help You</h3>
+                <div class="flex flex-col gap-2.5">
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Your Account</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+
+<script>
+    // 1. Load Cart Data
+    const cart = JSON.parse(localStorage.getItem('gucart_cart')) || [];
+    let total = 0;
+
+    // Redirect if empty
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        window.location.href = "/";
+    }
+
+    // 2. Render Summary Items
+    const itemsContainer = document.getElementById('order-items');
+    itemsContainer.innerHTML = ''; // Clear loading text
+
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        itemsContainer.innerHTML += `
+            <div class="flex items-center justify-between gap-4 border-b border-gray-100 pb-2 last:border-0">
+                <div class="flex items-center gap-3">
+                    <div class="h-12 w-12 flex-shrink-0 rounded-md bg-cover bg-center border" style='background-image: url("${item.image}");'></div>
+                    <div>
+                        <p class="text-sm font-semibold line-clamp-1">${item.name}</p>
+                        <p class="text-xs text-subtext-light dark:text-subtext-dark">Qty: ${item.quantity}</p>
+                    </div>
+                </div>
+                <p class="text-sm font-medium">₹${item.price * item.quantity}</p>
+            </div>
+        `;
+    });
+
+    document.getElementById('subtotal-amount').innerText = "₹" + total;
+    document.getElementById('total-amount').innerText = "₹" + total;
+
+    // 3. Place Order Function
+    async function placeOrder() {
+        const name = document.getElementById('full-name').value;
+        const address = document.getElementById('street-address').value;
+        const city = document.getElementById('city').value;
+        const zip = document.getElementById('pincode').value;
+
+        if (!name || !address || !city || !zip) {
+            alert("Please fill in all shipping details.");
+            return;
+        }
+
+        const orderData = {
+            customerName: name,
+            address: address,
+            city: city,
+            zip: zip,
+            totalAmount: total,
+            items: cart
+        };
+
+        try {
+            const response = await fetch('/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderData)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert("Order Placed Successfully! Thank you for shopping with GUcart.");
+                localStorage.removeItem('gucart_cart'); // Clear cart
+                window.location.href = "/"; // Redirect to home
+            } else {
+                alert("Failed to place order. Please try again.");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Error connecting to server.");
+        }
+    }
+</script>
+
+</body>
+</html>

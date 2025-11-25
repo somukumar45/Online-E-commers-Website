@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>GUcart - Modern E-commerce</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#FF8C42", "accent": "#0A2463", "background-light": "#FFFFFF" },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24 }
+        .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1 }
+    </style>
+</head>
+<body class="font-display bg-background-light text-slate-900 flex flex-col min-h-screen">
+
+<header class="bg-white sticky top-0 z-50 w-full shadow-sm border-b">
+    <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-8">
+            <a href="/" class="flex items-center gap-3">
+                <img class="h-16 w-auto" src="logo.png"/>
+                <h2 class="text-2xl font-bold tracking-tighter text-slate-800">GUcart</h2>
+            </a>
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="#" class="hover:text-accent">Shop Categories</a>
+                <a href="/seller" class="hover:text-accent">Seller Centre</a> 
+            </nav>
+        </div>
+
+        <div class="flex-1 px-8 max-w-lg hidden md:block">
+            <div class="relative flex w-full h-12 rounded-full bg-slate-100 border border-slate-200">
+                <div class="flex items-center justify-center pl-4 text-slate-400">
+                    <span class="material-symbols-outlined">search</span>
+                </div>
+                <input class="w-full bg-transparent px-4 outline-none text-sm" placeholder="Search products..."/>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <a href="/cart" class="relative text-slate-600 hover:text-accent">
+                <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+                <div class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold">!</div>
+            </a>
+            <a href="/login" class="text-slate-600 hover:text-accent">
+                <span class="material-symbols-outlined text-2xl">person</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="container mx-auto px-6 py-10 flex-grow">
+    
+    <div class="w-full rounded-2xl overflow-hidden relative h-[400px] bg-gray-900 flex items-center pl-12 mb-12">
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50">
+        <div class="relative z-10 text-white max-w-xl">
+            <h1 class="text-5xl font-black mb-4">Summer Sale is Live</h1>
+            <p class="text-lg mb-8 text-gray-200">Up to 50% off on new arrivals. Don't miss out.</p>
+            <button class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-orange-600 transition">Shop Now</button>
+        </div>
+    </div>
+
+    <section class="mb-16">
+        <h2 class="text-3xl font-bold text-accent mb-8">Featured Categories</h2>
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6">
+            
+            <a href="#" class="flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="w-24 h-24 rounded-full bg-slate-100 border-2 border-transparent group-hover:border-primary flex items-center justify-center transition-all">
+                    <span class="material-symbols-outlined text-4xl text-slate-600 group-hover:text-primary">devices</span>
+                </div>
+                <span class="font-medium text-slate-700 group-hover:text-primary">Electronics</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="w-24 h-24 rounded-full bg-slate-100 border-2 border-transparent group-hover:border-primary flex items-center justify-center transition-all">
+                    <span class="material-symbols-outlined text-4xl text-slate-600 group-hover:text-primary">checkroom</span>
+                </div>
+                <span class="font-medium text-slate-700 group-hover:text-primary">Fashion</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="w-24 h-24 rounded-full bg-slate-100 border-2 border-transparent group-hover:border-primary flex items-center justify-center transition-all">
+                    <span class="material-symbols-outlined text-4xl text-slate-600 group-hover:text-primary">chair</span>
+                </div>
+                <span class="font-medium text-slate-700 group-hover:text-primary">Home</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="w-24 h-24 rounded-full bg-slate-100 border-2 border-transparent group-hover:border-primary flex items-center justify-center transition-all">
+                    <span class="material-symbols-outlined text-4xl text-slate-600 group-hover:text-primary">menu_book</span>
+                </div>
+                <span class="font-medium text-slate-700 group-hover:text-primary">Books</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="w-24 h-24 rounded-full bg-slate-100 border-2 border-transparent group-hover:border-primary flex items-center justify-center transition-all">
+                    <span class="material-symbols-outlined text-4xl text-slate-600 group-hover:text-primary">face</span>
+                </div>
+                <span class="font-medium text-slate-700 group-hover:text-primary">Beauty</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="w-24 h-24 rounded-full bg-slate-100 border-2 border-transparent group-hover:border-primary flex items-center justify-center transition-all">
+                    <span class="material-symbols-outlined text-4xl text-slate-600 group-hover:text-primary">fitness_center</span>
+                </div>
+                <span class="font-medium text-slate-700 group-hover:text-primary">Sports</span>
+            </a>
+
+        </div>
+    </section>
+
+    <section>
+        <h2 class="text-3xl font-bold text-accent mb-8">Trending Now</h2>
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <p class="text-gray-500 col-span-full text-center">Loading amazing products...</p>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-slate-900 text-white mt-auto">
+    <div class="container mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+            <div class="lg:col-span-2 pr-8">
+                <a aria-label="GUcart Homepage" class="flex items-center gap-3" href="#">
+                    <img class="h-16 w-auto brightness-0 invert" src="logo.png"/>
+                    <h2 class="text-2xl font-bold tracking-tighter text-white">GUcart</h2>
+                </a>
+                <p class="mt-4 text-slate-400 text-sm">Your one-stop shop for everything you need. Fast, reliable, and always on trend.</p>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="font-bold text-base text-white">Get to Know Us</h3>
+                <div class="flex flex-col gap-2.5">
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">About Us</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Careers</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Press</a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="font-bold text-base text-white">Make Money</h3>
+                <div class="flex flex-col gap-2.5">
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="/seller">Sell on GUcart</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Become an Affiliate</a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="font-bold text-base text-white">Help</h3>
+                <div class="flex flex-col gap-2.5">
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Your Account</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Shipping Rates</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-16 pt-8 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <p class="text-sm text-slate-400">© 2025 GUcart, Inc. All rights reserved.</p>
+            <div class="flex items-center gap-4">
+                <a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                <a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    async function loadProducts() {
+        try {
+            // 1. Ask the server for data
+            const response = await fetch('/api/products');
+            const products = await response.json();
+
+            // 2. Find the container
+            const container = document.getElementById('products-grid');
+            
+            // 3. Clear the "Loading..." text
+            container.innerHTML = '';
+
+            // 4. Loop through data and create HTML for each product
+            products.forEach(product => {
+                // Updated Card: Now it is a Link (<a>) pointing to /product?id=...
+                const productCard = `
+                    <a href="/product?id=${product._id}" class="group flex flex-col bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all cursor-pointer">
+                        <div class="w-full aspect-square bg-gray-100 relative overflow-hidden">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-slate-800 truncate">${product.name}</h3>
+                            <p class="text-sm text-gray-500 mb-2">${product.category}</p>
+                            <div class="mt-auto flex items-center justify-between">
+                                <p class="text-xl font-black text-accent">₹${product.price}</p>
+                                <button class="bg-primary/10 text-primary p-2 rounded-full hover:bg-primary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                `;
+                // 5. Inject into the page
+                container.innerHTML += productCard;
+            });
+
+            // If no products found
+            if (products.length === 0) {
+                container.innerHTML = '<p class="col-span-full text-center text-gray-500">No products found yet. Go to Seller Dashboard to add some!</p>';
+            }
+
+        } catch (error) {
+            console.error('Error loading products:', error);
+        }
+    }
+
+    // Run this function when page loads
+    loadProducts();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GUcart Seller Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#4A90E2",
+              "background-light": "#F4F7FA",
+              "background-dark": "#101622",
+            },
+            fontFamily: { "display": ["Inter", "sans-serif"] },
+          },
+        },
+      }
+</script>
+<style> .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24 } </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="flex h-full grow">
+    
+    <aside class="flex h-screen min-h-[700px] w-64 flex-col justify-between bg-white dark:bg-[#19212e] p-4 border-r border-gray-200 dark:border-gray-700 fixed">
+        <div class="flex flex-col gap-8">
+            <div class="flex items-center gap-2 px-2">
+                <img class="h-12 w-auto" src="logo.png"/>
+                <h2 class="text-xl font-bold text-slate-800 dark:text-white">GUcart Seller</h2>
+            </div>
+            <div class="flex flex-col gap-2">
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="#">
+                    <span class="material-symbols-outlined fill text-2xl">dashboard</span>
+                    <p class="text-sm font-medium">Dashboard</p>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10" href="#">
+                    <span class="material-symbols-outlined text-2xl">inventory_2</span>
+                    <p class="text-sm font-medium">Product Listings</p>
+                </a>
+            </div>
+        </div>
+        <a href="/" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100">
+            <span class="material-symbols-outlined">logout</span>
+            <p class="text-sm font-medium">Back to Store</p>
+        </a>
+    </aside>
+
+    <main class="flex flex-1 flex-col ml-64 p-8">
+        <div class="flex flex-col gap-6">
+            <div>
+                <p class="text-3xl font-bold text-slate-800 dark:text-white">Seller Overview</p>
+                <p class="text-gray-500">Welcome back! Here is your store's performance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-[#19212e] p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <p class="text-gray-500 text-sm">Total Revenue</p>
+                    <p class="text-3xl font-bold text-slate-800 dark:text-white mt-2" id="stat-revenue">₹0</p>
+                </div>
+                <div class="bg-white dark:bg-[#19212e] p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <p class="text-gray-500 text-sm">Total Orders</p>
+                    <p class="text-3xl font-bold text-slate-800 dark:text-white mt-2" id="stat-orders">0</p>
+                </div>
+                <div class="bg-white dark:bg-[#19212e] p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <p class="text-gray-500 text-sm">Active Products</p>
+                    <p class="text-3xl font-bold text-slate-800 dark:text-white mt-2" id="stat-products">0</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-white dark:bg-[#19212e] p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white">Sales Performance</h3>
+                    </div>
+                    <div class="relative h-64 w-full">
+                        <canvas id="salesChart"></canvas> </div>
+                </div>
+
+                <div class="lg:col-span-1 bg-white dark:bg-[#19212e] p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-4">Quick Actions</h3>
+                    <div class="flex flex-col gap-3">
+                        <a href="/add-product.html" class="flex items-center justify-center w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-blue-600 transition">
+                            + Add New Product
+                        </a>
+                        <button onclick="loadStats()" class="flex items-center justify-center w-full border border-primary text-primary py-3 rounded-lg font-bold hover:bg-primary/10 transition">
+                            Refresh Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</div>
+
+<script>
+    let myChart = null; // To store chart instance
+
+    async function loadStats() {
+        try {
+            const response = await fetch('/api/dashboard-stats');
+            const data = await response.json();
+
+            // 1. Update Text Stats
+            document.getElementById('stat-revenue').innerText = '₹' + data.totalRevenue;
+            document.getElementById('stat-orders').innerText = data.totalOrders;
+            document.getElementById('stat-products').innerText = data.totalProducts;
+
+            // 2. Update Chart
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            
+            // Destroy old chart if refreshing
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.chart.labels, // Dates from Server
+                    datasets: [{
+                        label: 'Sales (₹)',
+                        data: data.chart.data, // Money from Server
+                        borderColor: '#4A90E2',
+                        backgroundColor: 'rgba(74, 144, 226, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4 // Makes line curved
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#e5e7eb' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+        } catch (error) {
+            console.error("Error loading stats:", error);
+        }
+    }
+
+    // Run on load
+    loadStats();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GUcart Admin - User Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0d59f2",
+              "background-light": "#f5f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col dark group/design-root">
+<div class="flex flex-1">
+<!-- SideNavBar -->
+<aside class="flex h-screen w-64 flex-col bg-[#101623] p-4 sticky top-0">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="GUcart logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB7xGIRYK2G9jD4vYKpI6STMZ08DCejowP80jkqPudgBYm6_ZanhMZn4oPBcCUiu_UrLLMVk7JdtaDD0E94YWGy9bXwwRZuCxaBGhHWArQ6lJyfsURVDw8VfT9Tn9iflWmuSrK47I6-1cT8n0uaWWq1t2LulWRrVjWzMwz0ytIgj_fPAVayDfZB7q68ND4iW1dBeMNmRT8rHx1Wt8pwvXzYhqK5NRaJCmlpqvgMojkJN8eAsWmHVDzglRKim17vY5Yv6SORqJrdP24");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-medium leading-normal">GUcart Admin</h1>
+<p class="text-[#90a4cb] text-sm font-normal leading-normal">admin@gucart.com</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white hover:bg-[#222f49]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white hover:bg-[#222f49]" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<p class="text-sm font-medium leading-normal">Products</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white hover:bg-[#222f49]" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<p class="text-sm font-medium leading-normal">Orders</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-[#222f49] text-white" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<p class="text-sm font-medium leading-normal">Users</p>
+</a>
+</nav>
+</div>
+<div class="mt-auto">
+<button class="flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Add New User</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8">
+<div class="flex flex-col gap-6">
+<!-- PageHeading -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<p class="text-black dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">User Management</p>
+<button class="hidden md:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Add New User</span>
+</button>
+</div>
+<!-- Filters and Search -->
+<div class="flex flex-col md:flex-row items-center gap-4">
+<!-- SearchBar -->
+<div class="w-full md:flex-1">
+<label class="flex flex-col h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#90a4cb] flex border-none bg-white dark:bg-[#222f49] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-black dark:text-white focus:outline-0 focus:ring-0 border-none bg-white dark:bg-[#222f49] focus:border-none h-full placeholder:text-[#90a4cb] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search by name or email..." value=""/>
+</div>
+</label>
+</div>
+<!-- Chips as Filters -->
+<div class="flex gap-2 self-start md:self-center">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 dark:bg-[#222f49] px-4 text-primary dark:text-white">
+<p class="text-sm font-medium leading-normal">All</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-[#222f49] px-4 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-[#314368]">
+<p class="text-sm font-medium leading-normal">Buyer</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-[#222f49] px-4 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-[#314368]">
+<p class="text-sm font-medium leading-normal">Seller</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-[#222f49] px-4 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-[#314368]">
+<p class="text-sm font-medium leading-normal">Admin</p>
+</button>
+</div>
+</div>
+<!-- Table -->
+<div class="@container">
+<div class="flex overflow-hidden rounded-lg border border-gray-200 dark:border-[#314368] bg-background-light dark:bg-[#101623]">
+<table class="w-full">
+<thead class="bg-gray-50 dark:bg-[#182234]">
+<tr>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-white w-[10%] text-sm font-medium leading-normal">User ID</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-white w-[25%] text-sm font-medium leading-normal">Full Name</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-white w-[25%] text-sm font-medium leading-normal">Email Address</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-white w-[15%] text-sm font-medium leading-normal">Account Role</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-white w-[15%] text-sm font-medium leading-normal">Registration Date</th>
+<th class="px-4 py-3 text-left text-gray-600 dark:text-white w-[10%] text-sm font-medium leading-normal">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-t border-t-gray-200 dark:border-t-[#314368]">
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">78123</td>
+<td class="h-[72px] px-4 py-2 text-gray-900 dark:text-white text-sm font-normal leading-normal">John Doe</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">john.doe@example.com</td>
+<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
+<span class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-700 px-3 py-1 text-xs font-medium text-gray-800 dark:text-gray-300">Buyer</span>
+</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">2023-01-15</td>
+<td class="h-[72px] px-4 py-2">
+<button class="text-gray-500 dark:text-[#90a4cb] hover:text-black dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-t border-t-gray-200 dark:border-t-[#314368]">
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">78124</td>
+<td class="h-[72px] px-4 py-2 text-gray-900 dark:text-white text-sm font-normal leading-normal">Jane Smith</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">jane.smith@example.com</td>
+<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900 px-3 py-1 text-xs font-medium text-green-800 dark:text-green-200">Seller</span>
+</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">2023-02-20</td>
+<td class="h-[72px] px-4 py-2">
+<button class="text-gray-500 dark:text-[#90a4cb] hover:text-black dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-t border-t-gray-200 dark:border-t-[#314368]">
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">78125</td>
+<td class="h-[72px] px-4 py-2 text-gray-900 dark:text-white text-sm font-normal leading-normal">Robert Johnson</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">robert.j@example.com</td>
+<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
+<span class="inline-flex items-center rounded-full bg-indigo-100 dark:bg-indigo-900 px-3 py-1 text-xs font-medium text-indigo-800 dark:text-indigo-200">Admin</span>
+</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">2022-11-30</td>
+<td class="h-[72px] px-4 py-2">
+<button class="text-gray-500 dark:text-[#90a4cb] hover:text-black dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-t border-t-gray-200 dark:border-t-[#314368]">
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">78126</td>
+<td class="h-[72px] px-4 py-2 text-gray-900 dark:text-white text-sm font-normal leading-normal">Emily White</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">emily.white@example.com</td>
+<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900 px-3 py-1 text-xs font-medium text-green-800 dark:text-green-200">Seller</span>
+</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">2023-03-10</td>
+<td class="h-[72px] px-4 py-2">
+<button class="text-gray-500 dark:text-[#90a4cb] hover:text-black dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-t border-t-gray-200 dark:border-t-[#314368]">
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">78127</td>
+<td class="h-[72px] px-4 py-2 text-gray-900 dark:text-white text-sm font-normal leading-normal">Michael Brown</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">michael.b@example.com</td>
+<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
+<span class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-700 px-3 py-1 text-xs font-medium text-gray-800 dark:text-gray-300">Buyer</span>
+</td>
+<td class="h-[72px] px-4 py-2 text-gray-500 dark:text-[#90a4cb] text-sm font-normal leading-normal">2023-04-05</td>
+<td class="h-[72px] px-4 py-2">
+<button class="text-gray-500 dark:text-[#90a4cb] hover:text-black dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Pagination -->
+<nav aria-label="Table navigation" class="flex items-center justify-between pt-4">
+<span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span class="font-semibold text-gray-900 dark:text-white">1-5</span> of <span class="font-semibold text-gray-900 dark:text-white">1000</span></span>
+<ul class="inline-flex items-center -space-x-px">
+<li>
+<a class="px-3 h-8 ml-0 leading-tight text-gray-500 bg-white dark:bg-[#182234] border border-gray-300 dark:border-[#314368] rounded-l-lg hover:bg-gray-100 dark:hover:bg-[#222f49] hover:text-gray-700 dark:hover:text-white flex items-center justify-center" href="#">Previous</a>
+</li>
+<li>
+<a class="px-3 h-8 leading-tight text-primary bg-primary/20 dark:bg-primary/30 border border-primary/50 dark:border-primary/50 hover:bg-primary/30 dark:hover:bg-primary/40 flex items-center justify-center" href="#">1</a>
+</li>
+<li>
+<a class="px-3 h-8 leading-tight text-gray-500 bg-white dark:bg-[#182234] border border-gray-300 dark:border-[#314368] hover:bg-gray-100 dark:hover:bg-[#222f49] hover:text-gray-700 dark:hover:text-white flex items-center justify-center" href="#">2</a>
+</li>
+<li>
+<a class="px-3 h-8 leading-tight text-gray-500 bg-white dark:bg-[#182234] border border-gray-300 dark:border-[#314368] hover:bg-gray-100 dark:hover:bg-[#222f49] hover:text-gray-700 dark:hover:text-white flex items-center justify-center" href="#">3</a>
+</li>
+<li>
+<a class="px-3 h-8 rounded-r-lg leading-tight text-gray-500 bg-white dark:bg-[#182234] border border-gray-300 dark:border-[#314368] hover:bg-gray-100 dark:hover:bg-[#222f49] hover:text-gray-700 dark:hover:text-white flex items-center justify-center" href="#">Next</a>
+</li>
+</ul>
+</nav>
+</div>
+</main>
+</div>
+</div>
+</body></html>

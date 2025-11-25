@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GUcart Component Sheet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102222",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Unified Header Component -->
+<header class="bg-white dark:bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50 w-full shadow-[0_4px_12px_rgba(13,242,242,0.1)]">
+<div class="container mx-auto px-6">
+<div class="flex h-20 items-center justify-between">
+<div class="flex items-center gap-8">
+<a aria-label="GUcart Homepage" class="flex items-center gap-3" href="#">
+<img class="h-16 w-auto" data-alt="GUcart logo in dark blue" src="logo.png"/>
+<h2 class="text-2xl font-bold tracking-tighter text-slate-800 dark:text-white">GUcart</h2>
+</a>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+                                    Shop Categories
+                                    <span class="material-symbols-outlined text-base">expand_more</span>
+</a>
+<a class="flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+                                    Seller Centre
+                                    <span class="material-symbols-outlined text-base">expand_more</span>
+</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">New Arrival</a>
+</nav>
+</div>
+<div class="flex-1 px-8 max-w-lg hidden md:block">
+<label class="flex flex-col w-full h-12">
+<div class="relative flex w-full flex-1 items-stretch rounded-full h-full border border-slate-200 dark:border-slate-700 bg-slate-100/50 dark:bg-slate-800/50 focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+<div class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-2xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-0 border-none bg-transparent h-full placeholder:text-slate-500 dark:placeholder:text-slate-400 px-4 pl-2 text-base font-normal leading-normal" placeholder="Search for products, brands, and more..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end items-center gap-3">
+<button class="flex h-11 w-11 cursor-pointer items-center justify-center overflow-hidden rounded-full text-slate-600 dark:text-slate-300 hover:bg-gradient-to-br hover:from-teal-400/20 hover:to-blue-500/20 hover:text-slate-900 dark:hover:text-white transition-all">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</button>
+<button class="relative flex h-11 w-11 cursor-pointer items-center justify-center overflow-hidden rounded-full text-slate-600 dark:text-slate-300 hover:bg-gradient-to-br hover:from-teal-400/20 hover:to-blue-500/20 hover:text-slate-900 dark:hover:text-white transition-all">
+<span class="material-symbols-outlined text-2xl">shopping_cart</span>
+<div class="absolute top-1.5 right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-teal-400 to-blue-500 text-white text-xs font-bold ring-2 ring-white dark:ring-slate-900/50">3</div>
+</button>
+<button class="flex h-11 w-11 cursor-pointer items-center justify-center overflow-hidden rounded-full text-slate-600 dark:text-slate-300 hover:bg-gradient-to-br hover:from-teal-400/20 hover:to-blue-500/20 hover:text-slate-900 dark:hover:text-white transition-all">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+</button>
+<div class="ml-2">
+<button class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-11 p-0.5 bg-gradient-to-br from-teal-400 to-blue-500">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-full" data-alt="User profile avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmoGz3AJ1loLoybirFoQjYtR1oSNi1jKbNFcsO3mgH9-AbJuzqD0k7Vu3joQKSwbRYvbWQ_qmwhYd4UGUXdic5xoXIMGWR_PvOgQljUxsY0TTHi2Ufak6ZYPda1yWFly51_fMz_PEv1uVDbm8wIHZsGO3KnSQRbiitL85-liCLFSxLelsGNQA6cqJiC1rjLAuQWKUs7JgJSVjwxJMI0Hmy00rPMpCVI2a3VJtk0KAWOyRB7EXstwgr-vDfXSlrDRvyZ9eMF0B62PE");'></div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Placeholder content to demonstrate scrolling -->
+<main class="flex-grow container mx-auto px-6 py-12">
+<div class="h-[1200px] border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl flex items-center justify-center">
+<p class="text-slate-500 dark:text-slate-400">Page Content Area</p>
+</div>
+</main>
+<!-- Universal Footer Component -->
+<footer class="bg-slate-900 dark:bg-[#0A1818] text-white">
+<div class="container mx-auto px-6 py-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+<div class="lg:col-span-2 pr-8">
+<a aria-label="GUcart Homepage" class="flex items-center gap-3" href="#">
+<img class="h-16 w-auto brightness-0 invert" data-alt="GUcart logo in white" src="logo.png"/>
+<h2 class="text-2xl font-bold tracking-tighter text-white">GUcart</h2>
+</a>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-base text-white">Get to Know Us</h3>
+<div class="flex flex-col gap-2.5">
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">About Us</a>
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Careers</a>
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Press</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-base text-white">Make Money with Us</h3>
+<div class="flex flex-col gap-2.5">
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Sell on GUcart</a>
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Become an Affiliate</a>
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Advertise Your Products</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-base text-white">Let Us Help You</h3>
+<div class="flex flex-col gap-2.5">
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Your Account</a>
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a>
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Help Centre</a>
+<a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-6">
+<p class="text-sm text-slate-400">© 2025 GUcart, Inc. All rights reserved.</p>
+<div class="flex items-center gap-4">
+<a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex items-center gap-4">
+<a aria-label="Facebook" href="#">
+<svg aria-hidden="true" class="w-6 h-6 text-slate-400 hover:text-white transition-colors" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+</a>
+<a aria-label="Twitter" href="#">
+<svg aria-hidden="true" class="w-6 h-6 text-slate-400 hover:text-white transition-colors" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+</a>
+<a aria-label="Instagram" href="#">
+<svg aria-hidden="true" class="w-6 h-6 text-slate-400 hover:text-white transition-colors" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.315 2zm-1.163 1.943c-1.049.045-1.71.21-2.227.412a3.001 3.001 0 00-1.064 1.064c-.202.517-.367 1.178-.412 2.227-.045 1.02-.056 1.349-.056 3.556s.011 2.536.056 3.556c.045 1.049.21 1.71.412 2.227a3.001 3.001 0 001.064 1.064c.517.202 1.178.367 2.227.412 1.017.045 1.345.056 3.519.056s2.502-.011 3.519-.056c1.049-.045 1.71-.21 2.227-.412a3.001 3.001 0 001.064-1.064c.202-.517.367-1.178.412-2.227.045-1.02.056-1.349.056-3.556s-.011-2.536-.056-3.556c-.045-1.049-.21-1.71-.412-2.227a3.001 3.001 0 00-1.064-1.064c-.517-.202-1.178-.367-2.227-.412-1.017-.045-1.345-.056-3.519-.056s-2.502.011-3.519.056zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 1.943a3.212 3.212 0 110 6.424 3.212 3.212 0 010-6.424zM16.848 6.344a1.155 1.155 0 100 2.31 1.155 1.155 0 000-2.31z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

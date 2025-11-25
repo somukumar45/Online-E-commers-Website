@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GUcart - Your Shopping Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#f48c25",
+                    "background-light": "#f8f7f5",
+                    "background-dark": "#221910",
+                },
+                fontFamily: {
+                    "display": ["Inter", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#1c140d] dark:text-background-light flex flex-col min-h-screen">
+
+<header class="bg-white dark:bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50 w-full shadow-[0_4px_12px_rgba(13,242,242,0.1)]">
+    <div class="container mx-auto px-6">
+        <div class="flex h-20 items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a aria-label="GUcart Homepage" class="flex items-center gap-3" href="/">
+                    <img class="h-16 w-auto" src="logo.png"/>
+                    <h2 class="text-2xl font-bold tracking-tighter text-slate-800 dark:text-white">GUcart</h2>
+                </a>
+                <nav class="hidden lg:flex items-center gap-6">
+                    <a class="flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+                        Shop Categories
+                        <span class="material-symbols-outlined text-base">expand_more</span>
+                    </a>
+                    <a class="flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="/seller">
+                        Seller Centre
+                        <span class="material-symbols-outlined text-base">expand_more</span>
+                    </a>
+                    <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">New Arrival</a>
+                </nav>
+            </div>
+            <div class="flex-1 px-8 max-w-lg hidden md:block">
+                <label class="flex flex-col w-full h-12">
+                    <div class="relative flex w-full flex-1 items-stretch rounded-full h-full border border-slate-200 dark:border-slate-700 bg-slate-100/50 dark:bg-slate-800/50 focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+                        <div class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500 flex items-center justify-center pl-4">
+                            <span class="material-symbols-outlined text-2xl">search</span>
+                        </div>
+                        <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-0 border-none bg-transparent h-full placeholder:text-slate-500 dark:placeholder:text-slate-400 px-4 pl-2 text-base font-normal leading-normal" placeholder="Search for products, brands, and more..." value=""/>
+                    </div>
+                </label>
+            </div>
+            <div class="flex flex-1 justify-end items-center gap-3">
+                <a href="/cart" class="relative flex h-11 w-11 cursor-pointer items-center justify-center overflow-hidden rounded-full text-slate-600 dark:text-slate-300 hover:bg-gradient-to-br hover:from-teal-400/20 hover:to-blue-500/20 hover:text-slate-900 dark:hover:text-white transition-all">
+                    <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+                    <div class="absolute top-1.5 right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white text-xs font-bold ring-2 ring-white dark:ring-slate-900/50">!</div>
+                </a>
+                <a href="/login" class="flex h-11 w-11 cursor-pointer items-center justify-center overflow-hidden rounded-full text-slate-600 dark:text-slate-300 hover:bg-gradient-to-br hover:from-teal-400/20 hover:to-blue-500/20 hover:text-slate-900 dark:hover:text-white transition-all">
+                    <span class="material-symbols-outlined text-2xl">person</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container mx-auto px-4 py-8 lg:px-8 flex-grow">
+    <h1 class="text-4xl font-black tracking-tighter mb-6 text-[#1c140d] dark:text-white">Your Shopping Cart</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+            <div class="bg-white dark:bg-[#2a2016] rounded-lg shadow-sm border border-slate-200 dark:border-gray-700 overflow-hidden">
+                <table class="min-w-full">
+                    <thead class="bg-slate-50 dark:bg-[#23190f] border-b border-slate-200 dark:border-gray-700">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 dark:text-gray-400">Product</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 dark:text-gray-400">Price</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 dark:text-gray-400">Qty</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 dark:text-gray-400">Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items-container" class="divide-y divide-slate-200 dark:divide-gray-700">
+                        </tbody>
+                </table>
+                <div id="empty-cart-msg" class="hidden p-10 text-center text-slate-500 dark:text-gray-400">
+                    Your cart is empty. <a href="/" class="text-primary font-bold hover:underline">Go Shop!</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-1">
+            <div class="bg-white dark:bg-[#2a2016] rounded-lg shadow-sm border border-slate-200 dark:border-gray-700 p-6 sticky top-24">
+                <h2 class="text-xl font-bold mb-4 text-[#1c140d] dark:text-white">Order Summary</h2>
+                <div class="flex justify-between mb-2 text-sm">
+                    <span class="text-slate-500 dark:text-gray-400">Subtotal</span>
+                    <span id="summary-subtotal" class="font-medium text-[#1c140d] dark:text-white">₹0.00</span>
+                </div>
+                <div class="flex justify-between mb-4 text-sm">
+                    <span class="text-slate-500 dark:text-gray-400">Shipping</span>
+                    <span class="font-medium text-green-600 dark:text-green-400">Free</span>
+                </div>
+                <div class="border-t border-slate-200 dark:border-gray-700 pt-4 flex justify-between text-lg font-bold text-[#1c140d] dark:text-white">
+                    <span>Total</span>
+                    <span id="summary-total">₹0.00</span>
+                </div>
+               <button onclick="window.location.href='/checkout'" class="mt-6 w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-opacity-90 transition">
+    Checkout
+</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-slate-900 dark:bg-[#0A1818] text-white mt-auto">
+    <div class="container mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+            <div class="lg:col-span-2 pr-8">
+                <a aria-label="GUcart Homepage" class="flex items-center gap-3" href="#">
+                    <img class="h-16 w-auto brightness-0 invert" src="logo.png"/>
+                    <h2 class="text-2xl font-bold tracking-tighter text-white">GUcart</h2>
+                </a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="font-bold text-base text-white">Get to Know Us</h3>
+                <div class="flex flex-col gap-2.5">
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">About Us</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Careers</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Press</a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="font-bold text-base text-white">Make Money with Us</h3>
+                <div class="flex flex-col gap-2.5">
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="/seller">Sell on GUcart</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Become an Affiliate</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Advertise Your Products</a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="font-bold text-base text-white">Let Us Help You</h3>
+                <div class="flex flex-col gap-2.5">
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Your Account</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Shipping & Returns</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Help Centre</a>
+                    <a class="text-sm text-slate-300 hover:text-primary transition-colors" href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-16 pt-8 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <p class="text-sm text-slate-400">© 2025 GUcart, Inc. All rights reserved.</p>
+            <div class="flex items-center gap-4">
+                <a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                <a class="text-sm text-slate-400 hover:text-primary transition-colors" href="#">Terms of Service</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a aria-label="Facebook" href="#">
+                    <svg aria-hidden="true" class="w-6 h-6 text-slate-400 hover:text-white transition-colors" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+                </a>
+                <a aria-label="Twitter" href="#">
+                    <svg aria-hidden="true" class="w-6 h-6 text-slate-400 hover:text-white transition-colors" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+                </a>
+                <a aria-label="Instagram" href="#">
+                    <svg aria-hidden="true" class="w-6 h-6 text-slate-400 hover:text-white transition-colors" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.315 2zm-1.163 1.943c-1.049.045-1.71.21-2.227.412a3.001 3.001 0 00-1.064 1.064c-.202.517-.367 1.178-.412 2.227-.045 1.02-.056 1.349-.056 3.556s.011 2.536.056 3.556c.045 1.049.21 1.71.412 2.227a3.001 3.001 0 001.064 1.064c.517.202 1.178.367 2.227.412 1.017.045 1.345.056 3.519.056s2.502-.011 3.519-.056c1.049-.045 1.71-.21 2.227-.412a3.001 3.001 0 00-1.064-1.064c.202-.517.367-1.178.412-2.227.045-1.02.056-1.349.056-3.556s-.011-2.536-.056-3.556c-.045-1.049-.21-1.71-.412-2.227a3.001 3.001 0 00-1.064-1.064c-.517-.202-1.178-.367-2.227-.412-1.017-.045-1.345-.056-3.519-.056s-2.502.011-3.519.056zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 1.943a3.212 3.212 0 110 6.424 3.212 3.212 0 010-6.424zM16.848 6.344a1.155 1.155 0 100 2.31 1.155 1.155 0 000-2.31z" fill-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function loadCart() {
+        // 1. Get cart from LocalStorage
+        let cart = JSON.parse(localStorage.getItem('gucart_cart')) || [];
+        const container = document.getElementById('cart-items-container');
+        const emptyMsg = document.getElementById('empty-cart-msg');
+        
+        container.innerHTML = ''; // Clear loading state
+        let totalAmount = 0;
+
+        // 2. Check if empty
+        if (cart.length === 0) {
+            emptyMsg.classList.remove('hidden');
+            return;
+        }
+
+        // 3. Loop through items
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            totalAmount += itemTotal;
+
+            const row = `
+                <tr class="border-b border-slate-200 dark:border-gray-700">
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-4">
+                            <img src="${item.image}" class="h-16 w-16 rounded-md object-cover border border-slate-200 dark:border-gray-700">
+                            <div>
+                                <p class="text-sm font-bold text-slate-800 dark:text-white">${item.name}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-slate-600 dark:text-gray-300">₹${item.price}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center border border-slate-300 dark:border-gray-600 rounded w-max">
+                            <button onclick="updateQty(${index}, -1)" class="px-2 py-1 hover:bg-slate-100 dark:hover:bg-gray-700 text-slate-600 dark:text-white">-</button>
+                            <span class="px-2 text-sm text-slate-800 dark:text-white">${item.quantity}</span>
+                            <button onclick="updateQty(${index}, 1)" class="px-2 py-1 hover:bg-slate-100 dark:hover:bg-gray-700 text-slate-600 dark:text-white">+</button>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm font-bold text-slate-800 dark:text-white">₹${itemTotal}</td>
+                    <td class="px-6 py-4">
+                        <button onclick="removeItem(${index})" class="text-red-500 hover:text-red-700 transition">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </td>
+                </tr>
+            `;
+            container.innerHTML += row;
+        });
+
+        // 4. Update Summary
+        document.getElementById('summary-subtotal').innerText = '₹' + totalAmount;
+        document.getElementById('summary-total').innerText = '₹' + totalAmount;
+    }
+
+    // Helper: Update Quantity
+    function updateQty(index, change) {
+        let cart = JSON.parse(localStorage.getItem('gucart_cart')) || [];
+        if (cart[index].quantity + change > 0) {
+            cart[index].quantity += change;
+            localStorage.setItem('gucart_cart', JSON.stringify(cart));
+            loadCart(); // Refresh
+        }
+    }
+
+    // Helper: Remove Item
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem('gucart_cart')) || [];
+        cart.splice(index, 1); // Remove item at index
+        localStorage.setItem('gucart_cart', JSON.stringify(cart));
+        loadCart(); // Refresh
+    }
+
+    // Run on load
+    loadCart();
+</script>
+
+</body>
+</html>
